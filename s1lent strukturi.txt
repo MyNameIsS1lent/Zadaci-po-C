@@ -1,0 +1,41 @@
+#include <stdio.h>
+struct date{
+int den,mesec,godina;
+};typedef struct date date;
+int sporedi (date d1,date d2) {
+if (d1.godina>d2.godina)
+    return 1;
+else if (d1.godina<d2.godina)
+    return -1;
+else if (d1.mesec>d2.mesec)
+    return 1;
+else if (d1.mesec<d2.mesec)
+    return -1;
+    else if (d1.den>d2.den)
+    return 1;
+    else if (d1.den<d2.den)
+    return -1;
+else return 0;
+}
+int denovi(date d1,date d2){
+int denovi=d1.den-d2.den;
+denovi+=(d1.mesec-d2.mesec)*30;
+denovi+=(d1.godina-d2.godina)*365;
+return denovi;
+}
+void citaj(date *d){
+scanf("%d.%d.%d",&d->den,&d->mesec,&d->godina);
+}
+int main (){
+date d1;
+date d2;
+citaj(&d1);
+citaj(&d2);
+int rez=sporedi(d1,d2);
+if(rez==1)
+    printf("Razlikata e %d",denovi(d1,d2));
+    else if(rez==-1)
+    printf("Razlikata e %d",denovi(d2,d1));
+    else
+        printf("Razlika nema vo denovi ");
+}
